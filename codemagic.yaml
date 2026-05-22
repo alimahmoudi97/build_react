@@ -1,15 +1,16 @@
 workflows:
   expo-android-apk:
     name: Expo Android APK
-    max_build_duration: 60
 
     environment:
       node: 20
 
     scripts:
-      - npm install
+      - npm ci
+      - npx expo --version
       - npx expo prebuild
       - cd android
+      - chmod +x gradlew
       - ./gradlew assembleRelease
 
     artifacts:
